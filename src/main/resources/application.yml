@@ -1,0 +1,8 @@
+spring:
+  application.name: springmodulithenduro
+
+logging:
+  level:
+    nu.westlin.springmodulithenduro: DEBUG
+    org.springframework.boot.web.embedded.tomcat: INFO
+    root: WARN
