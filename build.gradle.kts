@@ -37,6 +37,14 @@ dependencies {
     implementation("org.springframework.modulith:spring-modulith-events-api")
     implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
+
+    runtimeOnly("org.springframework.boot:spring-boot-starter-actuator")
+    runtimeOnly("org.springframework.modulith:spring-modulith-actuator")
+
+    runtimeOnly("org.springframework.modulith:spring-modulith-observability")
+    runtimeOnly("io.micrometer:micrometer-tracing-bridge-otel")
+    runtimeOnly("io.opentelemetry:opentelemetry-exporter-zipkin")
 
     runtimeOnly("com.h2database:h2")
 
