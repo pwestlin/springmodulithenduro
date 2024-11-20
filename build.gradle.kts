@@ -22,16 +22,21 @@ java {
 
 repositories {
     mavenCentral()
+    maven { url = uri("https://repo.spring.io/milestone") }
 }
 
-extra["springModulithVersion"] = "1.2.5"
+extra["springModulithVersion"] = "1.3.0-RC1"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springframework.modulith:spring-modulith-starter-core")
+    implementation("org.springframework.modulith:spring-modulith-starter-jdbc")
+    implementation("org.springframework.modulith:spring-modulith-events-core")
+    implementation("org.springframework.modulith:spring-modulith-events-api")
     implementation("io.github.oshai:kotlin-logging-jvm:7.0.0")
+    implementation("org.springframework.boot:spring-boot-starter-data-jdbc")
 
     runtimeOnly("com.h2database:h2")
 

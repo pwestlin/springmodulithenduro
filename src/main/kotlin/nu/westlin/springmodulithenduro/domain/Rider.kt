@@ -1,3 +1,6 @@
 package nu.westlin.springmodulithenduro.domain
 
-data class Rider(val id: Long, val name: String )
+import org.springframework.data.annotation.Id
+
+
+data class Rider(@Id val id: Long, val name: String )

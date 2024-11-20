@@ -1,34 +1,22 @@
 package nu.westlin.springmodulithenduro.registration.internal
 
+import io.github.oshai.kotlinlogging.KLogger
+import io.github.oshai.kotlinlogging.KotlinLogging
 import nu.westlin.springmodulithenduro.domain.Rider
-import nu.westlin.springmodulithenduro.payment.RegistrationPaid
-import nu.westlin.springmodulithenduro.registration.RegisterDriver
-import org.springframework.context.ApplicationEventPublisher
+import nu.westlin.springmodulithenduro.domain.RiderRepository
+import nu.westlin.springmodulithenduro.registration.RegisterRider
 import org.springframework.stereotype.Service
-
-/*
-@Service
-class DefaultRegisterDriver(
-    private val payForRegistration: PayForRegistration
-) : RegisterDriver {
-
-    override fun registerAndPay(i: Int) {
-        payForRegistration.pay(i)
-    }
-}
-*/
+import org.springframework.transaction.annotation.Transactional
 
 @Service
 class DefaultRegisterRider(
-    private val applicationEventPublisher: ApplicationEventPublisher
-) : RegisterDriver {
+    private val riderRepository: RiderRepository
+) : RegisterRider {
+    private val logger: KLogger = KotlinLogging.logger {}
 
-    override fun registerAndPay(amount: Int) {
-        applicationEventPublisher.publishEvent(
-            RegistrationPaid(
-                rider = Rider(1, "Foo bar"),
-                amount = amount
-            )
-        )
+    @Transactional
+    override fun registerRider(rider: Rider): Rider {
+        logger.info { "Register Rider: $rider" }
+        return riderRepository.save(rider)
     }
 }

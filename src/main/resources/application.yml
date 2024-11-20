@@ -1,8 +1,23 @@
 spring:
   application.name: springmodulithenduro
+  jpa.hibernate.ddl-auto: create-drop
+  datasource:
+    #url: jdbc:h2:mem:mydb
+    url: jdbc:h2:file:./endurodb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: test
+  sql.init.mode: always
+  h2.console:
+    enabled: true
+    path: /h2-console
+  modulith:
+    events:
+      republish-outstanding-events-on-restart: on
 
 logging:
   level:
     nu.westlin.springmodulithenduro: DEBUG
     org.springframework.boot.web.embedded.tomcat: INFO
+    logging.level.org.springframework.jdbc: DEBUG
     root: WARN
