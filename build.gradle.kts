@@ -5,7 +5,7 @@ plugins {
         kotlin("jvm") version kotlinVersion
         kotlin("plugin.spring") version kotlinVersion
     }
-    id("org.springframework.boot") version "3.3.5"
+    id("org.springframework.boot") version "3.4.0"
     id("io.spring.dependency-management") version "1.1.6"
     idea
     id("org.asciidoctor.jvm.convert") version "4.0.3"
@@ -25,7 +25,7 @@ repositories {
     maven { url = uri("https://repo.spring.io/milestone") }
 }
 
-extra["springModulithVersion"] = "1.3.0-RC1"
+extra["springModulithVersion"] = "1.3.0"
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")

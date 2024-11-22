@@ -4,6 +4,7 @@ import nu.westlin.springmodulithenduro.domain.RiderRepository
 import nu.westlin.springmodulithenduro.payment.PaymentService
 import nu.westlin.springmodulithenduro.payment.RegistrationPaid
 import nu.westlin.springmodulithenduro.payment.RegistrationPaymentRepository
+import nu.westlin.springmodulithenduro.payment.RegistrationPaymentResult
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
@@ -37,8 +38,3 @@ class DefaultPaymentService(
     }
 }
 
-sealed interface RegistrationPaymentResult {
-    data object Paid : RegistrationPaymentResult
-    data object AlreadyPaidError : RegistrationPaymentResult
-    data object RiderDoesNotExistError : RegistrationPaymentResult
-}

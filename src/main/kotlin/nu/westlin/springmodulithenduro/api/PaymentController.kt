@@ -5,7 +5,7 @@ import io.github.oshai.kotlinlogging.KotlinLogging
 import nu.westlin.springmodulithenduro.payment.PaymentService
 import nu.westlin.springmodulithenduro.payment.RegistrationPayment
 import nu.westlin.springmodulithenduro.payment.RegistrationPaymentRepository
-import nu.westlin.springmodulithenduro.payment.internal.RegistrationPaymentResult
+import nu.westlin.springmodulithenduro.payment.RegistrationPaymentResult
 import org.springframework.http.ResponseEntity
 import org.springframework.modulith.events.CompletedEventPublications
 import org.springframework.modulith.events.EventPublication
