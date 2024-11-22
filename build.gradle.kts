@@ -83,6 +83,7 @@ idea {
 }
 
 // TODO pevest: Depends on tests
+// TODO pevest: This does not work...yet :)
 tasks {
   "asciidoctor"(AsciidoctorTask::class) {
     setSourceDir(file("build/spring-modulith-docs"))
