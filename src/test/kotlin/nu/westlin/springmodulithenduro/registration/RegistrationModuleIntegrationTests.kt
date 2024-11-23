@@ -7,12 +7,9 @@ import io.mockk.every
 import io.mockk.verifySequence
 import nu.westlin.springmodulithenduro.domain.Rider
 import nu.westlin.springmodulithenduro.domain.RiderRepository
-import nu.westlin.springmodulithenduro.payment.RegistrationPaid
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Test
 import org.springframework.modulith.test.ApplicationModuleTest
-import org.springframework.modulith.test.AssertablePublishedEvents
 
 /*
 @ApplicationModuleTest
@@ -44,7 +41,7 @@ class RegistrationModuleIntegrationTests(
 
 @ApplicationModuleTest
 class RegistrationModuleIntegrationTests(
-    private val registerRider: RegisterRider,
+    private val registerRider: RegisterRider
 ) {
 
     private val logger = KotlinLogging.logger {}

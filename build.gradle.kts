@@ -9,6 +9,7 @@ plugins {
     id("io.spring.dependency-management") version "1.1.6"
     idea
     id("org.asciidoctor.jvm.convert") version "4.0.3"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
 }
 
 group = "nu.westlin"
@@ -70,6 +71,31 @@ kotlin {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
+    /*
+     Creates a nice "test report" in the console.
+     */
+    addTestListener(
+        object : TestListener {
+            override fun beforeTest(p0: TestDescriptor?) = Unit
+            override fun beforeSuite(p0: TestDescriptor?) = Unit
+            override fun afterTest(desc: TestDescriptor, result: TestResult) = Unit
+            override fun afterSuite(desc: TestDescriptor, result: TestResult) {
+                if (desc.parent == null) {
+                    val output =
+                        "${desc.name} results: ${result.resultType} (${result.testCount} tests, ${result.successfulTestCount} successes, ${result.failedTestCount} failures, ${result.skippedTestCount} skipped)"
+                    val startItem = "|  "
+                    val endItem = "  |"
+                    val repeatLength = startItem.length + output.length + endItem.length
+                    println(
+                        "\n" + ("-".repeat(repeatLength)) + "\n" + startItem + output + endItem + "\n" + ("-".repeat(
+                            repeatLength
+                        ))
+                    )
+                }
+            }
+        }
+    )
 }
 
 /**
@@ -85,17 +111,25 @@ idea {
 // TODO pevest: Depends on tests
 // TODO pevest: This does not work...yet :)
 tasks {
-  "asciidoctor"(AsciidoctorTask::class) {
-    setSourceDir(file("build/spring-modulith-docs"))
+    "asciidoctor"(AsciidoctorTask::class) {
+        setSourceDir(file("build/spring-modulith-docs"))
 /*
     sources(delegateClosureOf<PatternSet> {
       include("all-docs.adoc", )
     })
 */
-    setOutputDir(file("build/docs"))
-  }
+        setOutputDir(file("build/docs"))
+    }
 }
 
 tasks.withType<org.springframework.boot.gradle.tasks.run.BootRun> {
     systemProperties(System.getProperties().mapKeys { it.key as String })
+}
+
+/*
+If you have problems with a certain rule in just one or maybe two places, you can switch them off in the code using e.g:
+@Suppress("ktlint:standard:function-signature")
+ */
+configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
+    verbose.set(true)
 }

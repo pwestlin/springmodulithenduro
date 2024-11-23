@@ -29,11 +29,11 @@ class PaymentController(
 
     private val logger: KLogger = KotlinLogging.logger {}
 
-    @PostMapping("/registration/{riderId}/{amount}")
     // TODO pwestlin: I don't like ResponseEntity<Any> as return type
+    @PostMapping("/registration/{riderId}/{amount}")
     fun payRegistration(@PathVariable riderId: Long, @PathVariable amount: Int): ResponseEntity<BadRequestResponse?> {
         logger.info { "New registration payment: $riderId, $amount" }
-        return when(paymentService.payRegistration(riderId, amount)) {
+        return when (paymentService.payRegistration(riderId, amount)) {
             RegistrationPaymentResult.AlreadyPaidError -> ResponseEntity.badRequest().body(BadRequestResponse("Rider with id $riderId has already paid for registration"))
             RegistrationPaymentResult.Paid -> ResponseEntity.ok().build()
             RegistrationPaymentResult.RiderDoesNotExistError -> ResponseEntity.badRequest().body(BadRequestResponse("Rider with id $riderId does not exist"))
